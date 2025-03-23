@@ -1,7 +1,11 @@
+console.log("Vehicle Filter Script Loaded");
+
 document.addEventListener('DOMContentLoaded', function() {
     const carMakes = [
         "Buick", "Cadillac", "Chevrolet", "Chrysler", "Dodge", "Ford", "GMC", "Jeep", "Lincoln", "Ram"
     ];
+    // ... rest of the script remains the same ...
+});
 
     const carData = {
         "Buick": {
