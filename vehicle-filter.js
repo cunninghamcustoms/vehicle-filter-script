@@ -1,6 +1,7 @@
 console.log("Vehicle Filter Script Loaded");
 
-document.addEventListener('DOMContentLoaded', function() {
+// Wait for the DOM to be fully loaded, with a fallback delay
+function initVehicleFilter() {
     const carMakes = [
         "Buick", "Cadillac", "Chevrolet", "Chrysler", "Dodge", "Ford", "GMC", "Jeep", "Lincoln", "Ram"
     ];
@@ -173,4 +174,15 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Please select make, start year, end year, and model');
         }
     });
-});
+}
+
+// Try DOMContentLoaded first
+document.addEventListener('DOMContentLoaded', initVehicleFilter);
+
+// Fallback with a delay if DOMContentLoaded doesn't work
+setTimeout(() => {
+    if (!document.querySelector('#carilVehicleFilter_make').children.length > 1) { // Check if makes are populated
+        console.log('Fallback: Running initVehicleFilter after delay');
+        initVehicleFilter();
+    }
+}, 1000);
