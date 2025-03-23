@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const carMakes = [
         "Buick", "Cadillac", "Chevrolet", "Chrysler", "Dodge", "Ford", "GMC", "Jeep", "Lincoln", "Ram"
     ];
-    // ... rest of the script remains the same ...
-});
 
     const carData = {
         "Buick": {
@@ -68,6 +66,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const transmissionSelect = document.getElementById('carilVehicleFilter_transmission');
     const form = document.getElementById('caril-vehicle-filter-form');
 
+    console.log('DOM Elements:', {
+        makeSelect: !!makeSelect,
+        yearStartSelect: !!yearStartSelect,
+        yearEndSelect: !!yearEndSelect,
+        modelSelect: !!modelSelect,
+        engineSelect: !!engineSelect,
+        transmissionSelect: !!transmissionSelect,
+        form: !!form
+    });
+
     if (!makeSelect || !yearStartSelect || !yearEndSelect || !modelSelect || !engineSelect || !transmissionSelect || !form) {
         console.error('One or more form elements not found:', {
             makeSelect: !!makeSelect,
@@ -82,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Populate Makes
+    console.log('Populating makes...');
     carMakes.forEach((make, index) => {
         const option = document.createElement('option');
         option.value = index;
@@ -90,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Populate Years (1960 to 2025)
+    console.log('Populating years...');
     const currentYear = new Date().getFullYear() + 1; // 2025
     for (let year = currentYear; year >= 1960; year--) {
         const twoDigitYear = String(year).slice(-2);
@@ -105,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update Models based on Make
     makeSelect.addEventListener('change', function() {
+        console.log('Make changed:', this.value);
         modelSelect.innerHTML = '<option value="">Select Model</option>';
         engineSelect.innerHTML = '<option value="">Select Engine</option>';
         transmissionSelect.innerHTML = '<option value="">Select Transmission</option>';
@@ -121,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update Engines and Transmissions based on Model
     modelSelect.addEventListener('change', function() {
+        console.log('Model changed:', this.value);
         engineSelect.innerHTML = '<option value="">Select Engine</option>';
         transmissionSelect.innerHTML = '<option value="">Select Transmission</option>';
         const selectedMake = carMakes[makeSelect.value];
